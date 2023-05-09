@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 import time
 
+
 options = Options()
 options.add_experimental_option("detach", True)
 CHROME_DRIVER_PATH = Service("C:\Development\chromedriver.exe")
@@ -33,7 +34,7 @@ class InstaFollower:
         password.send_keys(Keys.ENTER)
 
     def find_follower(self):
-        time.sleep(3)
+        time.sleep(5)
         self.driver.get(f"https://www.instagram.com/{SIMILAR_ACCOUNT}")
 
         time.sleep(4)
@@ -41,16 +42,20 @@ class InstaFollower:
         followers.click()
 
         time.sleep(4)
-        modal = self.driver.find_element(By.XPATH, '/html/body/div[4]/div/div/div[2]')
-        for i in range(10):
-            self.driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight", modal)
+        scrollable = self.driver.find_element(by=By.CLASS_NAME, value="_aano")
+        for i in range(4):
+            bot.follow()
+            self.driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight", scrollable)
             time.sleep(2)
 
     def follow(self):
-        all_buttons = self.driver.find_elements(By.CSS_SELECTOR, "li button")
+        all_buttons = self.driver.find_elements(By.CSS_SELECTOR, 'div._aano button._acan._acap._acas._aj1-')
+        print(all_buttons)
+        print(len(all_buttons))
         for button in all_buttons:
             try:
                 button.click()
+                print("Followed/Requested")
                 time.sleep(1)
             except ElementClickInterceptedException:
                 cancel_button = self.driver.find_element(By.XPATH, '/html/body/div[5]/div/div/div/div[3]/button[2]')
