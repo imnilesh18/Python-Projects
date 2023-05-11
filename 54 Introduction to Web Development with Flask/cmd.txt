@@ -1,0 +1,11 @@
+pwd - cd current directory
+ls - dir list all 
+clear - cls 
+mkdir Folder_Name -> will create a folder (mkdir Test)
+echo. > main.py    -> To create a python file(in windows)
+in UNIX -> touch main.py
+rm File_Name - del File_Name (del main.py)
+cd .. -> back to parent folder
+rm -rf Test -> in UNIX
+robocopy folder empty /s /mir
+rmdir folder -> In Windows (Be careful because Command Line is very Powerful)
